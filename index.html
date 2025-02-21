@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App Showcase</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+      /* Your existing styles here */
+      * {
+  font-family: 'Poppins', sans-serif;
+}
+.icon {
+    background: url('icons/chevron-down-1.png');
+    height: 20px;
+    width: 20px;
+    display: block;
+    /* Other styles here */
+}
+      body {
+        background-color: #f4f4f9;
+        color: #333333;
+        margin: 0;
+        padding: 0;
+      }
+      .header {
+        display: flex;
+        width: 100%; /* Use full width */
+        height: 60px;
+        padding: 0px 20px; /* Consistent padding */
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--line, #525252);
+        background: #fff;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
+      }
+      .logo-title-container {
+        display: flex;
+        align-items: center;
+        gap: 12px; /* Increased gap for better spacing */
+      }
+
+      .logo {
+        display: flex;
+        width: 140px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+      }
+      .divider {
+        width: 1px;
+        height: 20px; /* Match height with logo */
+        background: #333333;
+      }
+      .header-title {
+        color: #333333;
+        font-size: 20px;
+        font-family: Poppins;
+        font-weight: 700;
+        line-height: 24px;
+        word-wrap: break-word;
+      }
+      .search-input {
+        color: rgba(51, 51, 51, 0.75);
+        font-size: 14px;
+        font-family: Roboto;
+        font-weight: 400;
+        line-height: 18px;
+        word-wrap: break-word;
+        padding: 8px 40px 8px 40px;
+        }
+      .search-input:focus {
+        outline: none;
+        border-color: #7f7f7f;
+        background-color: #ffffff;
+      }
+      .search-box .bi-search {
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c757d;
+      }
+      .search-icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666;
+      }
+
+      .view-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .view-button {
+        padding: 8px 16px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        background-color: #ffffff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .view-button i {
+        font-size: 1.1em;
+      }
+
+      .view-button.active {
+        background-color: #ff5000;
+        color: white;
+        border-color: #ff5000;
+      }
+      .view-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .download-csv-button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+      }
+
+      .download-csv-button:hover {
+        background-color: #218838;
+      }
+
+      /* Unique styling for Upload CSV button */
+      .upload-csv-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+      }
+
+      .upload-csv-button:hover {
+        background-color: #0056b3;
+      }
+      .content {
+        display: flex;
+      }
+
+      .left-panel {
+  width: 250px;
+  background-color: #ffffff;
+  box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.12);
+  padding: 16px 0;
+}
+
+.left-panel tag {
+  display: block;
+  padding: 12px 16px;
+  color: rgba(51, 51, 51, 0.80);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.left-panel tag:hover,
+.left-panel tag.active {
+  color: #EC4D08;
+}
+
+.left-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+.left-panel tag.active + ul {
+  display: block;
+}
+
+.left-panel li {
+  padding: 8px 16px;
+  color: rgba(51, 51, 51, 0.80);
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.left-panel li:hover {
+  color: #EC4D08;
+}
+
+.left-panel li i {
+  font-size: 12px;
+}      
+.app-grid {
+        padding:20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-around;
+        width: 100%;
+      }
+      .app-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      }
+      .app-card {
+  background-color: #fdfdfd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  min-height: 280px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.app-card h3::before {
+  content: "#" attr(data-serial);
+  font-size: 18px;
+  color: #666;
+  white-space: nowrap;
+  margin-right: 12px; /* Add spacing between serial number and title */
+}
+.app-card h3 {
+  color: #333333;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.app-card p {
+  color: rgba(51, 51, 51, 0.75);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tags-date-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.date-info {
+  color: #666;
+  font-size: 12px;
+}
+
+.tag {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.tag:nth-child(3n+1) {
+  background-color: #FFE0E0;
+  color: #D32F2F;
+}
+
+.tag:nth-child(3n+2) {
+  background-color: #E3F2FD;
+  color: #1976D2;
+}
+
+.tag:nth-child(3n+3) {
+  background-color: #E8F5E9;
+  color: #388E3C;
+}
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.go-to-demo-btn, .case-study-btn {
+  flex: 1;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.case-study-btn {
+  border: 1px solid #EC4D08;
+  background: transparent;
+  color: #EC4D08;
+}
+
+.go-to-demo-btn {
+  background: #EC4D08;
+  color: white;
+}
+.go-to-demo-btn:hover {
+  background-color: #e04400;
+}
+
+.case-study-btn:hover {
+  background-color: #e5e5e5;
+}
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo-title-container">
+        <img
+          src="https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/Stv_Primary_Colour_RGB.jpg"
+          alt="Logo"
+          class="logo"
+          width="122"
+          height="32"
+          id="headerLogo"
+        />
+        <div class="divider"></div>
+                
+        <div class="header-title">Solution Collection</div>
+      </div>
+      <div class="search-container">
+        <i class="bi bi-search search-icon"></i>
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search for apps ..."
+        />
+      </div>
+    </div>
+
+    <!-- Replace the view-buttons div with this -->
+
+    <div class="content">
+      <div class="left-panel" id="leftPanel"></div>
+      <div class="app-grid" id="appGrid"></div>
+    </div>
+
+    <div id="loading" class="spinner-border text-primary d-none" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+
+    <div id="error" class="alert alert-danger d-none" role="alert"></div>
+
+    <script>
+      // Global variables
+      let apps = [];
+      let categories = [];
+
+      // Initialize app
+      async function init() {
+        showLoading();
+        try {
+          // Fetch both CSV files
+          const [appsResponse, tagsResponse] = await Promise.all([
+            fetch(
+              'https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/App%20tools%20-%20Demos1.csv',
+            ),
+            fetch(
+              'https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/demos%20sheet%20of%20frontend%20-%20Tags.csv',
+            ),
+          ]);
+
+          const [appsText, tagsText] = await Promise.all([
+            appsResponse.text(),
+            tagsResponse.text(),
+          ]);
+
+          // Parse CSVs
+          apps = parseAppsCSV(appsText);
+          categories = parseTagsCSV(tagsText);
+
+          // Display content
+          displayApps(apps);
+          setupCategories();
+
+          hideLoading();
+        } catch (error) {
+          showError('Failed to load data: ' + error.message);
+        }
+      }
+      function escapeCsvValue(value) {
+        if (typeof value === 'string') {
+          return `"${value.replace(/"/g, '""')}"`;
+        }
+        return value;
+      }
+
+      function downloadCSV() {
+        const csvRows = [];
+        const headers = [
+          'Serial No',
+          'Name',
+          'Client',
+          'Description',
+          'Comments',
+          'Tags',
+          'Link',
+          'Additional Prompt',
+          'Image',
+        ];
+        csvRows.push(headers.map((header) => `"${header}"`).join(','));
+
+        apps.forEach((app) => {
+          const values = [
+            app.serialNo,
+            app.name,
+            app.client,
+            app.description,
+            app.comments,
+            app.tags,
+            app.link,
+            app.additionalPrompt,
+            app.image,
+          ].map((value) => `"${value}"`); // Enclose each value in quotes
+          csvRows.push(values.join(','));
+        });
+
+        const csvString = csvRows.join('\n');
+        const blob = new Blob([csvString], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.setAttribute('href', url);
+        a.setAttribute('download', 'apps.csv');
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+      function uploadCSV(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const text = e.target.result;
+          const uploadedApps = parseAppsCSV(text);
+          apps = uploadedApps; // Update the global apps variable
+          displayApps(apps); // Refresh the app cards
+        };
+        reader.readAsText(file);
+      }
+      function parseAppsCSV(csv) {
+        const lines = csv.split(/\r?\n/);
+        return lines
+          .slice(1) // Skip header row
+          .filter((line) => line.trim() !== '') // Filter out empty lines
+          .map((line) => {
+            const columns = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            // Only create object if we have at least the required fields
+            if (columns.length >= 9) {
+              return {
+                serialNo: columns[0]?.trim(),
+                name: columns[1]?.replace(/"/g, '').trim(),
+                client: columns[2]?.replace(/"/g, '').trim(),
+                description: columns[3]?.replace(/"/g, '').trim(),
+                comments: columns[4]?.replace(/"/g, '').trim(),
+                tags: columns[5]?.replace(/"/g, '').trim(),
+                link: columns[6]?.replace(/"/g, '').trim(),
+                additionalPrompt: columns[7]?.replace(/"/g, '').trim(),
+                image: columns[8]?.replace(/"/g, '').trim(),
+              };
+            }
+            return null;
+          })
+          .filter((item) => item !== null); // Filter out any null entries
+      }
+      function parseTagsCSV(csv) {
+        const result = [];
+        const lines = csv.match(/(?:[^\n"]|"[^"]*")+/g); // Match lines, including quoted strings
+
+        let currentCategory = null;
+
+        lines.forEach((line) => {
+          const [category, ...subCategories] = line
+            .split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+            .map((s) => s.trim()); // Split by comma not inside quotes
+          const subCategoryList = subCategories
+            .join(',')
+            .replace(/(^"|"$)/g, '')
+            .split(',')
+            .map((s) => s.trim()); // Join and clean subcategories
+
+          if (category) {
+            if (currentCategory) {
+              result.push(currentCategory);
+            }
+            currentCategory = {
+              name: category,
+              subCategories: subCategoryList,
+            };
+          }
+        });
+
+        if (currentCategory) {
+          result.push(currentCategory);
+        }
+        return result;
+      }
+      function displayApps(appsToShow) {
+        const grid = document.getElementById('appGrid');
+        grid.innerHTML = '';
+
+        appsToShow.forEach((app) => {
+          const card = document.createElement('div');
+          card.className = 'app-card';
+          // Add click handler to the entire card
+
+          card.innerHTML = `
+  <h3 data-serial="${app.serialNo}">${app.name}</h3>
+  <p>${app.description}</p>
+  <div class="tags-date-container">
+    <div class="tags-container">
+      ${app.tags?.split(',').map(tag => 
+        `<span class="tag">${tag.trim()}</span>`
+      ).join('')}
+    </div>
+    <span class="date-info">${app.date || 'N/A'}</span>
+  </div>
+      <div class="button-container">
+        <a href="#" class="case-study-btn">
+          <img src="case-study-icon.svg" alt=""/>
+          Case Study
+        </a>
+        <a href="${app.link}" class="go-to-demo-btn">
+          <img src="launch-icon.svg" alt=""/>
+          Launch App
+        </a>
+      </div>
+                        `;
+
+
+          // Prevent tag clicks from triggering card click
+          const tagsContainer = card.querySelector('.tags-container');
+          tagsContainer.addEventListener('click', (e) => {
+            e.stopPropagation();
+          });
+
+          // Prevent launch button clicks from triggering card click
+          const launchBtn = card.querySelector('.go-to-demo-btn');
+          launchBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+          });
+
+          grid.appendChild(card);
+        });
+      }
+      function showSelectedCards() {
+        const selectedCheckboxes = document.querySelectorAll('.card-checkbox:checked');
+
+        if (selectedCheckboxes.length === 0) {
+          alert('Please select at least one card');
+          return;
+        }
+
+        const selectedApps = Array.from(selectedCheckboxes)
+          .map((checkbox) => apps.find((app) => app.serialNo === checkbox.dataset.appId))
+          .filter((app) => app);
+
+        const newWindowContent = `
+              <!DOCTYPE html>
+              <html>
+              <head>
+                  <title>Selected Cards</title>
+                  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+                  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+                  <style>
+                  ${document.querySelector('style').innerHTML}
+                  </style>
+              </head>
+              <body>
+                  <div class="header">
+                      <img
+                          src="https://www.straive.com/wp-content/uploads/2024/04/straive-logo.png"
+                          alt="Logo"
+                          class="logo"
+                          width="170"
+                          height="50"
+                          id="headerLogo"
+                          onclick="resetFilters()"
+                      />
+                      <div class="search-container">
+                          <i class="bi bi-search search-icon"></i>
+                          <input
+                              type="text"
+                              id="searchInput"
+                              class="search-input"
+                              placeholder="Search for apps ..."
+                          />
+                      </div>
+                      <div class="view-buttons">
+                          <button class="view-button" onclick="listView()">
+                              <i class="bi bi-list-ul"></i> List View
+                          </button>
+                          <button class="view-button active" onclick="tileView()">
+                              <i class="bi bi-grid-3x3-gap"></i> Tile View
+                          </button>
+                      </div>
+                  </div>
+
+                  <div class="content">
+                      <div class="left-panel" id="leftPanel">
+                          ${document.getElementById('leftPanel').innerHTML}
+                      </div>
+                      <div class="app-grid" id="appGrid">
+                          ${selectedApps
+                            .map(
+                              (app) => `
+                              <div class="app-card" onclick="window.open('${app.link}', '_blank')">
+                                  <h3><i class="bi bi-app"></i> ${app.name}</h3>
+                                  <img src="${app.image}" alt="${app.name}" onerror="this.src='https://placehold.co/400x300?text=No+Image'">
+                                  <p><i class="bi bi-info-circle"></i> ${app.description}</p>
+                                  <div class="tags-container">
+                                      ${
+                                        app.tags
+                                          ?.split(',')
+                                          .map(
+                                            (tag) =>
+                                              `<span class="tag"><i class="bi bi-tag"></i> ${tag.trim()}</span>`,
+                                          )
+                                          .join('') || ''
+                                      }
+                                  </div>
+                                  <a href="${
+                                    app.link
+                                  }" class="go-to-demo-btn" target="_blank">
+                                      <i class="bi bi-box-arrow-up-right"></i> Launch App
+                                  </a>
+                              </div>
+                          `,
+                            )
+                            .join('')}
+                      </div>
+                  </div>
+
+                  <script>
+                      // Store the apps data
+                      const apps = ${JSON.stringify(selectedApps)};
+
+                      function displayApps(appsToShow) {
+                          const grid = document.getElementById('appGrid');
+                          grid.innerHTML = '';
+                          appsToShow.forEach(app => {
+                              const card = document.createElement('div');
+                              card.className = 'app-card';
+                              card.onclick = () => window.open(app.link, '_blank');
+                              card.innerHTML = \`
+                                  <h3><i class="bi bi-app"></i> \${app.name}</h3>
+                                  <img src="\${app.image}" alt="\${app.name}" onerror="this.src='https://placehold.co/400x300?text=No+Image'">
+                                  <p><i class="bi bi-info-circle"></i> \${app.description}</p>
+                                  <div class="tags-container">
+                                      \${app.tags?.split(',').map(tag => \`<span class="tag"><i class="bi bi-tag"></i> \${tag.trim()}</span>\`).join('') || ''}
+                                  </div>
+                                  <a href="\${app.link}" class="go-to-demo-btn" target="_blank">
+                                      <i class="bi bi-box-arrow-up-right"></i> Launch App
+                                  </a>
+                              \`;
+                              grid.appendChild(card);
+                          });
+                      }
+
+                      function filterByTag(tag) {
+                          const filtered = apps.filter(app =>
+                              app.tags?.toLowerCase().includes(tag.toLowerCase())
+                          );
+                          displayApps(filtered);
+                      }
+
+                      function resetFilters() {
+                          document.getElementById('searchInput').value = '';
+                          displayApps(apps);
+                          document.querySelectorAll('.left-panel h3').forEach(title => {
+                              title.classList.remove('active');
+                              const list = title.nextElementSibling;
+                              if (list) {
+                                  list.style.display = 'none';
+                              }
+                          });
+                      }
+
+                      function listView() {
+                          document.querySelectorAll('.app-card').forEach(card => {
+                              card.style.width = '100%';
+                          });
+                          document.querySelectorAll('.view-button').forEach(btn => {
+                              btn.classList.remove('active');
+                          });
+                          document.querySelector('.view-button').classList.add('active');
+                      }
+
+                      function tileView() {
+                          document.querySelectorAll('.app-card').forEach(card => {
+                              card.style.width = '30%';
+                          });
+                          document.querySelectorAll('.view-button').forEach(btn => {
+                              btn.classList.remove('active');
+                          });
+                          document.querySelectorAll('.view-button')[1].classList.add('active');
+                      }
+
+                      // Set up search functionality
+                      document.getElementById('searchInput').addEventListener('input', (e) => {
+                          const searchTerm = e.target.value.toLowerCase();
+                          const filtered = apps.filter(app =>
+                              app.name.toLowerCase().includes(searchTerm) ||
+                              app.description.toLowerCase().includes(searchTerm) ||
+                              app.tags?.toLowerCase().includes(searchTerm)
+                          );
+                          displayApps(filtered);
+                      });
+
+                      // Set up category filtering
+                      document.querySelectorAll('.left-panel h3').forEach(title => {
+                          title.addEventListener('click', () => {
+                              title.classList.toggle('active');
+                              const list = title.nextElementSibling;
+                              if (list) {
+                                  list.style.display = list.style.display === 'none' ? 'block' : 'none';
+                              }
+                          });
+                      });
+
+                      document.querySelectorAll('.left-panel li').forEach(item => {
+                          item.addEventListener('click', () => {
+                              const tag = item.textContent.trim();
+                              filterByTag(tag);
+                          });
+                      });
+                  <\/script>
+              </body>
+              </html>
+          `;
+
+        const newWindow = window.open('', '_blank');
+        newWindow.document.write(newWindowContent);
+        newWindow.document.close();
+      }
+
+      function setupCategories() {
+        const panel = document.getElementById('leftPanel');
+        panel.innerHTML = '';
+
+        categories.forEach((category) => {
+          const title = document.createElement('tag');
+          title.innerHTML = `${category.name}`;
+
+          const list = document.createElement('ul');
+          list.style.display = 'none';
+          category.subCategories.forEach((subCategory) => {
+            const item = document.createElement('li');
+            item.innerHTML = ` ${subCategory}`;
+            item.addEventListener('click', () => filterByTag(subCategory));
+            list.appendChild(item);
+          });
+
+          title.addEventListener('click', () => {
+            title.classList.toggle('active');
+            list.style.display = list.style.display === 'none' ? 'block' : 'none';
+          });
+
+          panel.appendChild(title);
+          panel.appendChild(list);
+        });
+      }
+
+      function filterByTag(tag) {
+        const filtered = apps.filter((app) => app.tags?.toLowerCase().includes(tag.toLowerCase()));
+        displayApps(filtered);
+      }
+
+      function listView() {
+        document.querySelectorAll('.app-card').forEach((card) => {
+          card.style.width = '100%';
+        });
+        document.querySelectorAll('.view-button').forEach((btn) => {
+          btn.classList.remove('active');
+        });
+        document.querySelector('button').classList.add('active');
+      }
+
+      function tileView() {
+        document.querySelectorAll('.app-card').forEach((card) => {
+          card.style.width = '32%';
+        });
+        document.querySelectorAll('.view-button').forEach((btn) => {
+          btn.classList.remove('active');
+        });
+        document.querySelectorAll('.view-button')[1].classList.add('active');
+      }
+
+      // Utility functions
+      function showLoading() {
+        document.getElementById('loading').classList.remove('d-none');
+      }
+
+      function hideLoading() {
+        document.getElementById('loading').classList.add('d-none');
+      }
+
+      function showError(message) {
+        const error = document.getElementById('error');
+        error.textContent = message;
+        error.classList.remove('d-none');
+        hideLoading();
+        setTimeout(() => error.classList.add('d-none'), 5000);
+      }
+
+      // Search functionality
+      document.getElementById('searchInput').addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const filtered = apps.filter(
+          (app) =>
+            app.name.toLowerCase().includes(searchTerm) ||
+            app.description.toLowerCase().includes(searchTerm) ||
+            app.tags?.toLowerCase().includes(searchTerm),
+        );
+        displayApps(filtered);
+      });
+      // Add this function to reset filters
+      function resetFilters() {
+        // Reset search input
+        document.getElementById('searchInput').value = '';
+
+        // Display all apps
+        displayApps(apps);
+
+        // Reset category selections in left panel
+        document.querySelectorAll('.left-panel h3').forEach((title) => {
+          title.classList.remove('active');
+          const list = title.nextElementSibling;
+          if (list) {
+            list.style.display = 'none';
+          }
+        });
+      }
+
+      // Add this in your init() function or at the end of your script
+      document.getElementById('headerLogo').addEventListener('click', resetFilters);
+      // Initialize the app
+      window.addEventListener('load', init);
+    </script>
+  </body>
+</html>
