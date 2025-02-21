@@ -14,83 +14,47 @@
       rel="stylesheet"
       crossorigin="anonymous"
     />
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://raw.githubusercontent.com/gramener/assets/main/straive-favicon.svg">
     <style>
       /* Your existing styles here */
-      * {
-  font-family: 'Poppins', sans-serif;
-}
-.icon {
-    background: url('icons/chevron-down-1.png');
-    height: 20px;
-    width: 20px;
-    display: block;
-    /* Other styles here */
-}
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 40px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
       body {
         background-color: #f4f4f9;
         color: #333333;
         margin: 0;
         padding: 0;
       }
-      .header {
-        display: flex;
-        width: 100%; /* Use full width */
-        height: 60px;
-        padding: 0px 20px; /* Consistent padding */
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid var(--line, #525252);
-        background: #fff;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
-      }
-      .logo-title-container {
-        display: flex;
-        align-items: center;
-        gap: 12px; /* Increased gap for better spacing */
+      .logo {
+        margin-right: 20px;
+        cursor: pointer;
       }
 
-      .logo {
-        display: flex;
-        width: 140px;
-        height: 40px;
-        justify-content: center;
-        align-items: center;
-      }
-      .divider {
-        width: 1px;
-        height: 20px; /* Match height with logo */
-        background: #333333;
-      }
-      .header-title {
-        color: #333333;
-        font-size: 20px;
-        font-family: Poppins;
-        font-weight: 700;
-        line-height: 24px;
-        word-wrap: break-word;
-      }
       .search-input {
-        color: rgba(51, 51, 51, 0.75);
-        font-size: 14px;
-        font-family: Roboto;
-        font-weight: 400;
-        line-height: 18px;
-        word-wrap: break-word;
-        padding: 8px 40px 8px 40px;
-        }
+        padding: 12px 15px;
+        width: 50%;
+        border-radius: 25px;
+        border: 1px solid #dddddd;
+        font-size: 16px;
+        background-color: #f9f9f9;
+        color: #555;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
       .search-input:focus {
         outline: none;
         border-color: #7f7f7f;
         background-color: #ffffff;
       }
-      .search-box .bi-search {
-        position: absolute;
-        right: 0.75rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #6c757d;
+      .search-container {
+        position: relative;
+        width: 50%;
       }
       .search-icon {
         position: absolute;
@@ -100,6 +64,9 @@
         color: #666;
       }
 
+      .search-input {
+        padding-left: 40px; /* Make room for the icon */
+      }
       .view-buttons {
         display: flex;
         gap: 10px;
@@ -156,207 +123,218 @@
       }
       .content {
         display: flex;
+        padding: 20px;
       }
 
       .left-panel {
-  width: 250px;
-  background-color: #ffffff;
-  box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.12);
-  padding: 16px 0;
-}
+        width: 10%;
+        padding: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-right: 10px;
+      }
 
-.left-panel tag {
-  display: block;
-  padding: 12px 16px;
-  color: rgba(51, 51, 51, 0.80);
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
+      .left-panel h3 {
+        margin-bottom: 15px;
+        font-size: 18px;
+        color: #444;
+        cursor: pointer;
+        user-select: none;
+      }
 
-.left-panel tag:hover,
-.left-panel tag.active {
-  color: #EC4D08;
-}
+      .left-panel ul {
+        list-style-type: none;
+        padding: 0;
+        display: none;
+      }
 
-.left-panel ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: none;
-}
+      .left-panel li {
+        margin: 10px 0;
+        cursor: pointer;
+        font-size: 14px;
+        color: #7f7f7f;
+        transition: color 0.3s ease;
+      }
 
-.left-panel tag.active + ul {
-  display: block;
-}
+      .left-panel li:hover {
+        color: #555;
+      }
 
-.left-panel li {
-  padding: 8px 16px;
-  color: rgba(51, 51, 51, 0.80);
-  font-size: 14px;
-  cursor: pointer;
-  transition: color 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+      .left-panel .active + ul {
+        display: block;
+      }
 
-.left-panel li:hover {
-  color: #EC4D08;
-}
-
-.left-panel li i {
-  font-size: 12px;
-}      
-.app-grid {
-        padding:20px;
+      .app-grid {
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
         justify-content: space-around;
         width: 100%;
       }
+
+      .app-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 30%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        cursor: pointer;
+      }
       .app-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
       }
+      .app-card h3 {
+        margin: 0;
+        height: 90px;
+        padding-top: 10px;
+        font-size: 25px;
+      }
+
+      .app-card img {
+        width: 100%;
+        height: 150px;
+        border-radius: 8px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+      }
+
+      .app-card:hover img {
+        transform: scale(1.5);
+      }
+
+      .app-card p {
+        margin: 0;
+        padding-top: 5px;
+        text-align: center;
+      }
+      .tags-container {
+        margin-top: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .tag {
+        background-color: #f2f2f2;
+        color: #333;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 12px;
+      }
+
+      .go-to-demo-btn {
+        display: inline-block;
+        background-color: #ff5000;
+        color: white;
+        padding: 6px 14px;
+        font-size: 12px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 20px;
+        margin: 10px auto;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+        width: 120px;
+      }
+
+      .go-to-demo-btn:hover {
+        background-color: #e04400;
+      }
+      .app-card .card-checkbox {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        transform: scale(2);
+        cursor: pointer;
+        z-index: 2;
+      }
+
+      .create-selected-button {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+      }
+
+      .create-selected-button:hover {
+        background-color: #5a6268;
+      }
+
       .app-card {
-  background-color: #fdfdfd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  min-height: 280px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.app-card h3::before {
-  content: "#" attr(data-serial);
-  font-size: 18px;
-  color: #666;
-  white-space: nowrap;
-  margin-right: 12px; /* Add spacing between serial number and title */
-}
-.app-card h3 {
-  color: #333333;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.2;
-  margin: 0;
-  text-align: left;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
+        position: relative; /* Add this to position the checkbox */
+      }
+      @media (max-width: 1200px) {
+        .app-card {
+          width: 31%;
+        }
+      }
 
-.app-card p {
-  color: rgba(51, 51, 51, 0.75);
-  font-size: 14px;
-  line-height: 1.5;
-  text-align: left;
-  margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
+      @media (max-width: 768px) {
+        .header {
+          flex-direction: column;
+          padding: 15px;
+        }
+        .logo {
+          margin-bottom: 10px;
+          width: 100%;
+          max-width: 200px;
+        }
+        .search-input {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+        .content {
+          flex-direction: column;
+          padding: 15px;
+        }
+        .left-panel {
+          width: 100%;
+          margin-bottom: 15px;
+        }
+        .app-card {
+          width: calc(50% - 10px);
+        }
+      }
 
-.tags-date-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: auto;
-}
+      @media (max-width: 480px) {
+        .app-card {
+          width: calc(100% - 20px);
+        }
+      }
 
-.tags-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  align-items: center;
-}
+      #loading {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
 
-.date-info {
-  color: #666;
-  font-size: 12px;
-}
-
-.tag {
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 12px;
-  white-space: nowrap;
-}
-.tag:nth-child(3n+1) {
-  background-color: #FFE0E0;
-  color: #D32F2F;
-}
-
-.tag:nth-child(3n+2) {
-  background-color: #E3F2FD;
-  color: #1976D2;
-}
-
-.tag:nth-child(3n+3) {
-  background-color: #E8F5E9;
-  color: #388E3C;
-}
-.button-container {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: auto;
-}
-
-.go-to-demo-btn, .case-study-btn {
-  flex: 1;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
-  text-align: center;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.case-study-btn {
-  border: 1px solid #EC4D08;
-  background: transparent;
-  color: #EC4D08;
-}
-
-.go-to-demo-btn {
-  background: #EC4D08;
-  color: white;
-}
-.go-to-demo-btn:hover {
-  background-color: #e04400;
-}
-
-.case-study-btn:hover {
-  background-color: #e5e5e5;
-}
+      #error {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+      }
     </style>
   </head>
   <body>
     <div class="header">
-      <div class="logo-title-container">
-        <img
-          src="https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/Stv_Primary_Colour_RGB.jpg"
-          alt="Logo"
-          class="logo"
-          width="122"
-          height="32"
-          id="headerLogo"
-        />
-        <div class="divider"></div>
-                
-        <div class="header-title">Solution Collection</div>
-      </div>
+      <img
+        src="./Images/Stv_Primary_Colour_RGB.jpg"
+        alt="Logo"
+        class="logo"
+        width="170"
+        height="50"
+        id="headerLogo"
+      />
       <div class="search-container">
         <i class="bi bi-search search-icon"></i>
         <input
@@ -366,10 +344,36 @@
           placeholder="Search for apps ..."
         />
       </div>
+      <!-- Replace the view-buttons div with this -->
+      <div class="view-buttons">
+        <button class="view-button" onclick="listView()">
+          <i class="bi bi-list-ul"></i> List View
+        </button>
+        <button class="view-button active" onclick="tileView()">
+          <i class="bi bi-grid-3x3-gap"></i> Tile View
+        </button>
+        <button class="view-button download-csv-button" onclick="downloadCSV()">
+          <i class="bi bi-download"></i> Download CSV
+        </button>
+        <input
+          type="file"
+          id="uploadCSV"
+          class="view-button"
+          accept=".csv"
+          onchange="uploadCSV(event)"
+          style="display: none"
+        />
+        <button
+          class="view-button upload-csv-button"
+          onclick="document.getElementById('uploadCSV').click()"
+        >
+          <i class="bi bi-upload"></i> Upload CSV
+        </button>
+        <button class="view-button create-selected-button" onclick="showSelectedCards()">
+          <i class="bi bi-box-arrow-up-right"></i> Create Selected Cards
+        </button>
+      </div>
     </div>
-
-    <!-- Replace the view-buttons div with this -->
-
     <div class="content">
       <div class="left-panel" id="leftPanel"></div>
       <div class="app-grid" id="appGrid"></div>
@@ -382,218 +386,219 @@
     <div id="error" class="alert alert-danger d-none" role="alert"></div>
 
     <script>
-      // Global variables
-      let apps = [];
-      let categories = [];
+                // Global variables
+                let apps = [];
+                let categories = [];
 
-      // Initialize app
-      async function init() {
-        showLoading();
-        try {
-          // Fetch both CSV files
-          const [appsResponse, tagsResponse] = await Promise.all([
-            fetch(
-              'https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/App%20tools%20-%20Demos1.csv',
-            ),
-            fetch(
-              'https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/demos%20sheet%20of%20frontend%20-%20Tags.csv',
-            ),
-          ]);
-
-          const [appsText, tagsText] = await Promise.all([
-            appsResponse.text(),
-            tagsResponse.text(),
-          ]);
-
-          // Parse CSVs
-          apps = parseAppsCSV(appsText);
-          categories = parseTagsCSV(tagsText);
-
-          // Display content
-          displayApps(apps);
-          setupCategories();
-
-          hideLoading();
-        } catch (error) {
-          showError('Failed to load data: ' + error.message);
+                // Initialize app
+                async function init() {
+                    showLoading();
+                    try {
+                        // Fetch both CSV files
+                        const appsResponse = await fetch('https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/App%20tools%20-%20Demos1.csv');
+                        const tagsResponse= await fetch('https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/demos%20sheet%20of%20frontend%20-%20Tags.csv')
+                        // fetch('https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/App%20tools%20-%20Demos1.csv'),
+                        // fetch('https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/demos%20sheet%20of%20frontend%20-%20Tags.csv')
+                        // const appsResponse = await fetch('data/feb18 demos.csv');
+                        // const tagsResponse = await fetch('data/tags_data.csv');
+                        if (!appsResponse.ok) {
+            throw new Error(`Failed to fetch apps: ${appsResponse.status} ${appsResponse.statusText}`);
         }
-      }
-      function escapeCsvValue(value) {
-        if (typeof value === 'string') {
-          return `"${value.replace(/"/g, '""')}"`;
+        if (!tagsResponse.ok) {
+            throw new Error(`Failed to fetch tags: ${tagsResponse.status} ${tagsResponse.statusText}`);
         }
-        return value;
-      }
+                        console.log("Yes");
+                        const [appsText, tagsText] = await Promise.all([
+                            appsResponse.text(),
+                            tagsResponse.text()
+                        ]);
 
-      function downloadCSV() {
-        const csvRows = [];
-        const headers = [
-          'Serial No',
-          'Name',
-          'Client',
-          'Description',
-          'Comments',
-          'Tags',
-          'Link',
-          'Additional Prompt',
-          'Image',
-        ];
-        csvRows.push(headers.map((header) => `"${header}"`).join(','));
+                        // Log the contents of the CSV files for debugging
+                        console.log("Apps CSV Content:", appsText);
+                        console.log("Tags CSV Content:", tagsText);
 
-        apps.forEach((app) => {
-          const values = [
-            app.serialNo,
-            app.name,
-            app.client,
-            app.description,
-            app.comments,
-            app.tags,
-            app.link,
-            app.additionalPrompt,
-            app.image,
-          ].map((value) => `"${value}"`); // Enclose each value in quotes
-          csvRows.push(values.join(','));
-        });
+                        // Parse CSVs
+                        apps = parseAppsCSV(appsText);
+                        categories = parseTagsCSV(tagsText);
 
-        const csvString = csvRows.join('\n');
-        const blob = new Blob([csvString], { type: 'text/csv' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.setAttribute('href', url);
-        a.setAttribute('download', 'apps.csv');
-        a.click();
-        URL.revokeObjectURL(url);
-      }
-      function uploadCSV(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          const text = e.target.result;
-          const uploadedApps = parseAppsCSV(text);
-          apps = uploadedApps; // Update the global apps variable
-          displayApps(apps); // Refresh the app cards
-        };
-        reader.readAsText(file);
-      }
-      function parseAppsCSV(csv) {
-        const lines = csv.split(/\r?\n/);
-        return lines
-          .slice(1) // Skip header row
-          .filter((line) => line.trim() !== '') // Filter out empty lines
-          .map((line) => {
-            const columns = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-            // Only create object if we have at least the required fields
-            if (columns.length >= 9) {
-              return {
-                serialNo: columns[0]?.trim(),
-                name: columns[1]?.replace(/"/g, '').trim(),
-                client: columns[2]?.replace(/"/g, '').trim(),
-                description: columns[3]?.replace(/"/g, '').trim(),
-                comments: columns[4]?.replace(/"/g, '').trim(),
-                tags: columns[5]?.replace(/"/g, '').trim(),
-                link: columns[6]?.replace(/"/g, '').trim(),
-                additionalPrompt: columns[7]?.replace(/"/g, '').trim(),
-                image: columns[8]?.replace(/"/g, '').trim(),
-              };
-            }
-            return null;
-          })
-          .filter((item) => item !== null); // Filter out any null entries
-      }
-      function parseTagsCSV(csv) {
-        const result = [];
-        const lines = csv.match(/(?:[^\n"]|"[^"]*")+/g); // Match lines, including quoted strings
+                        // Display content
+                        displayApps(apps);
+                        setupCategories();
 
-        let currentCategory = null;
+                        hideLoading();
+                    } catch (error) {
+                        showError("Failed to load data: " + error.message);
+                    }
+                }
+                function escapeCsvValue(value) {
+                    if (typeof value === 'string') {
+                        return `"${value.replace(/"/g, '""')}"`;
+                    }
+                    return value;
+                }
 
-        lines.forEach((line) => {
-          const [category, ...subCategories] = line
-            .split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
-            .map((s) => s.trim()); // Split by comma not inside quotes
-          const subCategoryList = subCategories
-            .join(',')
-            .replace(/(^"|"$)/g, '')
-            .split(',')
-            .map((s) => s.trim()); // Join and clean subcategories
+                function downloadCSV() {
+                    const csvRows = [];
+                    const headers = ['Serial No', 'Name', 'Client', 'Description', 'Comments', 'Tags', 'Link', 'Additional Prompt', 'Image'];
+                    csvRows.push(headers.map(header => `"${header}"`).join(','));
 
-          if (category) {
-            if (currentCategory) {
-              result.push(currentCategory);
-            }
-            currentCategory = {
-              name: category,
-              subCategories: subCategoryList,
-            };
-          }
-        });
+                    apps.forEach(app => {
+                        const values = [
+                            app.serialNo,
+                            app.name,
+                            app.client,
+                            app.description,
+                            app.comments,
+                            app.tags,
+                            app.link,
+                            app.additionalPrompt,
+                            app.image
+                        ].map(value => `"${value}"`); // Enclose each value in quotes
+                        csvRows.push(values.join(','));
+                    });
 
-        if (currentCategory) {
-          result.push(currentCategory);
-        }
-        return result;
-      }
-      function displayApps(appsToShow) {
-        const grid = document.getElementById('appGrid');
-        grid.innerHTML = '';
+                    const csvString = csvRows.join('\n');
+                    const blob = new Blob([csvString], { type: 'text/csv' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.setAttribute('href', url);
+                    a.setAttribute('download', 'apps.csv');
+                    a.click();
+                    URL.revokeObjectURL(url);
+                }
+                function uploadCSV(event) {
+                    const file = event.target.files[0];
+                    if (!file) return;
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const text = e.target.result;
+                        const uploadedApps = parseAppsCSV(text);
+                        apps = uploadedApps; // Update the global apps variable
+                        displayApps(apps); // Refresh the app cards
+                    };
+                    reader.readAsText(file);
+                    }
+                function parseAppsCSV(csv) {
+                    const lines = csv.split(/\r?\n/);
+                    return lines
+                        .slice(1) // Skip header row
+                        .filter(line => line.trim() !== '') // Filter out empty lines
+                        .map(line => {
+                        const columns = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                        // Only create object if we have at least the required fields
+                        if (columns.length >= 9) {
+                            return {
+                                serialNo: columns[0]?.trim(),
+                                name: columns[1]?.replace(/"/g, '').trim(),
+                                client: columns[2]?.replace(/"/g, '').trim(),
+                                description: columns[3]?.replace(/"/g, '').trim(),
+                                comments: columns[4]?.replace(/"/g, '').trim(),
+                                tags: columns[5]?.replace(/"/g, '').trim(),
+                                link: columns[6]?.replace(/"/g, '').trim(),
+                                additionalPrompt: columns[7]?.replace(/"/g, '').trim(),
+                                image: columns[8]?.replace(/"/g, '').trim()
+                            };
+                        }
+                        return null;
+                    })
+                    .filter(item => item !== null); // Filter out any null entries
+                }
+                function parseTagsCSV(csv) {
+                const result = [];
+                const lines = csv.match(/(?:[^\n"]|"[^"]*")+/g); // Match lines, including quoted strings
 
-        appsToShow.forEach((app) => {
-          const card = document.createElement('div');
-          card.className = 'app-card';
-          // Add click handler to the entire card
+                let currentCategory = null;
 
-          card.innerHTML = `
-  <h3 data-serial="${app.serialNo}">${app.name}</h3>
-  <p>${app.description}</p>
-  <div class="tags-date-container">
-    <div class="tags-container">
-      ${app.tags?.split(',').map(tag => 
-        `<span class="tag">${tag.trim()}</span>`
-      ).join('')}
-    </div>
-    <span class="date-info">${app.date || 'N/A'}</span>
-  </div>
-      <div class="button-container">
-        <a href="#" class="case-study-btn">
-          <img src="case-study-icon.svg" alt=""/>
-          Case Study
-        </a>
-        <a href="${app.link}" class="go-to-demo-btn">
-          <img src="launch-icon.svg" alt=""/>
-          Launch App
-        </a>
-      </div>
+                lines.forEach(line => {
+                    const [category, ...subCategories] = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(s => s.trim()); // Split by comma not inside quotes
+                    const subCategoryList = subCategories.join(',').replace(/(^"|"$)/g, '').split(',').map(s => s.trim()); // Join and clean subcategories
+
+                    if (category) {
+                        if (currentCategory) {
+                            result.push(currentCategory);
+                        }
+                        currentCategory = {
+                            name: category,
+                            subCategories: subCategoryList
+                        };
+                    }
+                });
+
+                if (currentCategory) {
+                    result.push(currentCategory);
+                }
+                return result;
+                }
+                function displayApps(appsToShow) {
+                    const grid = document.getElementById('appGrid');
+                    grid.innerHTML = '';
+
+                    appsToShow.forEach(app => {
+                        const card = document.createElement('div');
+                        card.className = 'app-card';
+
+                        // Add checkbox
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.className = 'card-checkbox';
+                        checkbox.style.position = 'absolute';
+                        checkbox.style.top = '10px';
+                        checkbox.style.left = '10px';
+                        checkbox.dataset.appId = app.serialNo; // Store app ID in dataset
+
+                        card.style.position = 'relative'; // For checkbox positioning
+
+                        // Add click handler to the entire card
+                        card.addEventListener('click', (e) => {
+                            if (e.target !== checkbox && // Don't trigger card click when clicking checkbox
+                                !e.target.closest('.tags-container') &&
+                                !e.target.closest('.go-to-demo-btn')) {
+                                window.open(app.link, '_blank');
+                            }
+                        });
+
+                        card.innerHTML = `
+                            <h3> ${app.name}</h3>
+                            <img src="${app.image}" alt="${app.name}" onerror="this.src='https://placehold.co/400x300?text=No+Image'">
+                            <p><i class="bi bi-info-circle"></i> ${app.description}</p>
+                            <div class="tags-container">
+                                ${app.tags?.split(',').map(tag => `<span class="tag"><i class="bi bi-tag"></i> ${tag.trim()}</span>`).join('') || ''}
+                            </div>
+                            <a href="${app.link}" class="go-to-demo-btn" target="_blank">
+                                <i class="bi bi-box-arrow-up-right"></i> Launch App
+                            </a>
                         `;
 
+                        card.insertBefore(checkbox, card.firstChild);
 
-          // Prevent tag clicks from triggering card click
-          const tagsContainer = card.querySelector('.tags-container');
-          tagsContainer.addEventListener('click', (e) => {
-            e.stopPropagation();
-          });
+                        // Prevent tag clicks from triggering card click
+                        const tagsContainer = card.querySelector('.tags-container');
+                        tagsContainer.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                        });
 
-          // Prevent launch button clicks from triggering card click
-          const launchBtn = card.querySelector('.go-to-demo-btn');
-          launchBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-          });
+                        // Prevent launch button clicks from triggering card click
+                        const launchBtn = card.querySelector('.go-to-demo-btn');
+                        launchBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                        });
 
-          grid.appendChild(card);
-        });
-      }
+                        grid.appendChild(card);
+                    });
+                    }
       function showSelectedCards() {
-        const selectedCheckboxes = document.querySelectorAll('.card-checkbox:checked');
+          const selectedCheckboxes = document.querySelectorAll('.card-checkbox:checked');
 
-        if (selectedCheckboxes.length === 0) {
-          alert('Please select at least one card');
-          return;
-        }
+          if (selectedCheckboxes.length === 0) {
+              alert('Please select at least one card');
+              return;
+          }
 
-        const selectedApps = Array.from(selectedCheckboxes)
-          .map((checkbox) => apps.find((app) => app.serialNo === checkbox.dataset.appId))
-          .filter((app) => app);
+          const selectedApps = Array.from(selectedCheckboxes).map(checkbox =>
+              apps.find(app => app.serialNo === checkbox.dataset.appId)
+          ).filter(app => app);
 
-        const newWindowContent = `
+          const newWindowContent = `
               <!DOCTYPE html>
               <html>
               <head>
@@ -639,33 +644,19 @@
                           ${document.getElementById('leftPanel').innerHTML}
                       </div>
                       <div class="app-grid" id="appGrid">
-                          ${selectedApps
-                            .map(
-                              (app) => `
+                          ${selectedApps.map(app => `
                               <div class="app-card" onclick="window.open('${app.link}', '_blank')">
                                   <h3><i class="bi bi-app"></i> ${app.name}</h3>
                                   <img src="${app.image}" alt="${app.name}" onerror="this.src='https://placehold.co/400x300?text=No+Image'">
                                   <p><i class="bi bi-info-circle"></i> ${app.description}</p>
                                   <div class="tags-container">
-                                      ${
-                                        app.tags
-                                          ?.split(',')
-                                          .map(
-                                            (tag) =>
-                                              `<span class="tag"><i class="bi bi-tag"></i> ${tag.trim()}</span>`,
-                                          )
-                                          .join('') || ''
-                                      }
+                                      ${app.tags?.split(',').map(tag => `<span class="tag"><i class="bi bi-tag"></i> ${tag.trim()}</span>`).join('') || ''}
                                   </div>
-                                  <a href="${
-                                    app.link
-                                  }" class="go-to-demo-btn" target="_blank">
+                                  <a href="${app.link}" class="go-to-demo-btn" target="_blank">
                                       <i class="bi bi-box-arrow-up-right"></i> Launch App
                                   </a>
                               </div>
-                          `,
-                            )
-                            .join('')}
+                          `).join('')}
                       </div>
                   </div>
 
@@ -767,113 +758,114 @@
               </html>
           `;
 
-        const newWindow = window.open('', '_blank');
-        newWindow.document.write(newWindowContent);
-        newWindow.document.close();
+          const newWindow = window.open('', '_blank');
+          newWindow.document.write(newWindowContent);
+          newWindow.document.close();
       }
 
-      function setupCategories() {
-        const panel = document.getElementById('leftPanel');
-        panel.innerHTML = '';
+                function setupCategories() {
+                    const panel = document.getElementById('leftPanel');
+                    panel.innerHTML = '';
 
-        categories.forEach((category) => {
-          const title = document.createElement('tag');
-          title.innerHTML = `${category.name}`;
+                    categories.forEach(category => {
+                        const title = document.createElement('h3');
+                        title.innerHTML = `<i class="bi bi-folder"></i> ${category.name}`;
 
-          const list = document.createElement('ul');
-          list.style.display = 'none';
-          category.subCategories.forEach((subCategory) => {
-            const item = document.createElement('li');
-            item.innerHTML = ` ${subCategory}`;
-            item.addEventListener('click', () => filterByTag(subCategory));
-            list.appendChild(item);
-          });
+                        const list = document.createElement('ul');
+                        list.style.display = 'none';
+                        category.subCategories.forEach(subCategory => {
+                            const item = document.createElement('li');
+                            item.innerHTML = `<i class="bi bi-tag"></i> ${subCategory}`;
+                            item.addEventListener('click', () => filterByTag(subCategory));
+                            list.appendChild(item);
+                        });
 
-          title.addEventListener('click', () => {
-            title.classList.toggle('active');
-            list.style.display = list.style.display === 'none' ? 'block' : 'none';
-          });
+                        title.addEventListener('click', () => {
+                            title.classList.toggle('active');
+                            list.style.display = list.style.display === 'none' ? 'block' : 'none';
+                        });
 
-          panel.appendChild(title);
-          panel.appendChild(list);
-        });
-      }
+                        panel.appendChild(title);
+                        panel.appendChild(list);
+                    });
+                }
 
-      function filterByTag(tag) {
-        const filtered = apps.filter((app) => app.tags?.toLowerCase().includes(tag.toLowerCase()));
-        displayApps(filtered);
-      }
+                function filterByTag(tag) {
+                    const filtered = apps.filter(app =>
+                        app.tags?.toLowerCase().includes(tag.toLowerCase())
+                    );
+                    displayApps(filtered);
+                }
 
-      function listView() {
-        document.querySelectorAll('.app-card').forEach((card) => {
-          card.style.width = '100%';
-        });
-        document.querySelectorAll('.view-button').forEach((btn) => {
-          btn.classList.remove('active');
-        });
-        document.querySelector('button').classList.add('active');
-      }
+                function listView() {
+                    document.querySelectorAll('.app-card').forEach(card => {
+                        card.style.width = '100%';
+                    });
+                    document.querySelectorAll('.view-button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    document.querySelector('button').classList.add('active');
+                }
 
-      function tileView() {
-        document.querySelectorAll('.app-card').forEach((card) => {
-          card.style.width = '32%';
-        });
-        document.querySelectorAll('.view-button').forEach((btn) => {
-          btn.classList.remove('active');
-        });
-        document.querySelectorAll('.view-button')[1].classList.add('active');
-      }
+                function tileView() {
+                    document.querySelectorAll('.app-card').forEach(card => {
+                        card.style.width = '32%';
+                    });
+                    document.querySelectorAll('.view-button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    document.querySelectorAll('.view-button')[1].classList.add('active');
+                }
 
-      // Utility functions
-      function showLoading() {
-        document.getElementById('loading').classList.remove('d-none');
-      }
+                // Utility functions
+                function showLoading() {
+                    document.getElementById('loading').classList.remove('d-none');
+                }
 
-      function hideLoading() {
-        document.getElementById('loading').classList.add('d-none');
-      }
+                function hideLoading() {
+                    document.getElementById('loading').classList.add('d-none');
+                }
 
-      function showError(message) {
-        const error = document.getElementById('error');
-        error.textContent = message;
-        error.classList.remove('d-none');
-        hideLoading();
-        setTimeout(() => error.classList.add('d-none'), 5000);
-      }
+                function showError(message) {
+                    const error = document.getElementById('error');
+                    error.textContent = message;
+                    error.classList.remove('d-none');
+                    hideLoading();
+                    setTimeout(() => error.classList.add('d-none'), 5000);
+                }
 
-      // Search functionality
-      document.getElementById('searchInput').addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        const filtered = apps.filter(
-          (app) =>
-            app.name.toLowerCase().includes(searchTerm) ||
-            app.description.toLowerCase().includes(searchTerm) ||
-            app.tags?.toLowerCase().includes(searchTerm),
-        );
-        displayApps(filtered);
-      });
-      // Add this function to reset filters
-      function resetFilters() {
-        // Reset search input
-        document.getElementById('searchInput').value = '';
+                // Search functionality
+                document.getElementById('searchInput').addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const filtered = apps.filter(app =>
+                        app.name.toLowerCase().includes(searchTerm) ||
+                        app.description.toLowerCase().includes(searchTerm) ||
+                        app.tags?.toLowerCase().includes(searchTerm)
+                    );
+                    displayApps(filtered);
+                });
+                // Add this function to reset filters
+                function resetFilters() {
+                    // Reset search input
+                    document.getElementById('searchInput').value = '';
 
-        // Display all apps
-        displayApps(apps);
+                    // Display all apps
+                    displayApps(apps);
 
-        // Reset category selections in left panel
-        document.querySelectorAll('.left-panel h3').forEach((title) => {
-          title.classList.remove('active');
-          const list = title.nextElementSibling;
-          if (list) {
-            list.style.display = 'none';
-          }
-        });
-      }
+                    // Reset category selections in left panel
+                    document.querySelectorAll('.left-panel h3').forEach(title => {
+                        title.classList.remove('active');
+                        const list = title.nextElementSibling;
+                        if (list) {
+                            list.style.display = 'none';
+                        }
+                    });
+                }
 
-      // Add this in your init() function or at the end of your script
-      document.getElementById('headerLogo').addEventListener('click', resetFilters);
-      // Initialize the app
-      window.addEventListener('load', init);
+            // Add this in your init() function or at the end of your script
+            document.getElementById('headerLogo').addEventListener('click', resetFilters);
+                                                              // Initialize the app
+                                                              window.addEventListener('load', init);
     </script>
   </body>
 </html>
