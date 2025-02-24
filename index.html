@@ -1,60 +1,81 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>App Showcase</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-      rel="stylesheet"
-      crossorigin="anonymous"
-    />
-    <link rel="icon" href="https://raw.githubusercontent.com/gramener/assets/main/straive-favicon.svg">
+<!DOCTYPE html>
+<html>
+<head>
     <style>
-      /* Your existing styles here */
-      .header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 20px 40px;
-        background-color: #ffffff;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      }
+      * {
+  font-family: 'Poppins', sans-serif;
+}
+.icon {
+    background: url('icons/chevron-down-1.png');
+    height: 20px;
+    width: 20px;
+    /* Other styles here */
+}
       body {
         background-color: #f4f4f9;
         color: #333333;
         margin: 0;
         padding: 0;
       }
-      .logo {
-        margin-right: 20px;
-        cursor: pointer;
+      .header {
+        display: flex;
+        width: 100%; /* Use full width */
+        height: 60px;
+        padding: 0px 20px; /* Consistent padding */
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--line, #525252);
+        background: #fff;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
+      }
+      .logo-title-container {
+        display: flex;
+        align-items: center;
+        gap: 12px; /* Increased gap for better spacing */
       }
 
-      .search-input {
-        padding: 12px 15px;
-        width: 50%;
-        border-radius: 25px;
-        border: 1px solid #dddddd;
-        font-size: 16px;
-        background-color: #f9f9f9;
-        color: #555;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+      .logo {
+        display: flex;
+        width: 140px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
       }
+      .divider {
+        width: 1px;
+        height: 20px; /* Match height with logo */
+        background: #333333;
+      }
+      .header-title {
+        color: #333333;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 24px;
+        word-wrap: break-word;
+      }
+      .search-input {
+        color: rgba(51, 51, 51, 0.75);
+        font-size: 14px;
+        font-family: Roboto;
+        font-weight: 400;
+        line-height: 18px;
+        word-wrap: break-word;
+        padding: 8px 40px;        
+        }
+        .search-container {
+            position: relative;
+        }
       .search-input:focus {
         outline: none;
         border-color: #7f7f7f;
         background-color: #ffffff;
       }
-      .search-container {
-        position: relative;
-        width: 50%;
+      .search-box .bi-search {
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c757d;
       }
       .search-icon {
         position: absolute;
@@ -64,808 +85,481 @@
         color: #666;
       }
 
-      .search-input {
-        padding-left: 40px; /* Make room for the icon */
-      }
-      .view-buttons {
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-        width: 100%;
-        margin-top: 10px;
-      }
-
-      .view-button {
-        padding: 8px 16px;
-        border: 1px solid #ddd;
-        border-radius: 20px;
-        background-color: #ffffff;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .view-button i {
-        font-size: 1.1em;
-      }
-
-      .view-button.active {
-        background-color: #ff5000;
-        color: white;
-        border-color: #ff5000;
-      }
-      .view-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
-
-      .download-csv-button {
-        background-color: #28a745;
-        color: white;
-        border: none;
-      }
-
-      .download-csv-button:hover {
-        background-color: #218838;
-      }
-
-      /* Unique styling for Upload CSV button */
-      .upload-csv-button {
-        background-color: #007bff;
-        color: white;
-        border: none;
-      }
-
-      .upload-csv-button:hover {
-        background-color: #0056b3;
-      }
-      .content {
-        display: flex;
-        padding: 20px;
-      }
-
+      
       .left-panel {
-        width: 10%;
-        padding: 10px;
-        background-color: #ffffff;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        margin-right: 10px;
-      }
+  width: 250px;
+  background-color: #ffffff;
+  box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.12);
+  padding: 16px 0;
+}
 
-      .left-panel h3 {
-        margin-bottom: 15px;
-        font-size: 18px;
-        color: #444;
-        cursor: pointer;
-        user-select: none;
-      }
+.left-panel tag {
+  display: block;
+  padding: 12px 16px;
+  color: rgba(51, 51, 51, 0.80);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
 
-      .left-panel ul {
-        list-style-type: none;
-        padding: 0;
-        display: none;
-      }
+.left-panel tag:hover,
+.left-panel tag.active {
+  color: #EC4D08;
+}
 
-      .left-panel li {
-        margin: 10px 0;
-        cursor: pointer;
-        font-size: 14px;
-        color: #7f7f7f;
-        transition: color 0.3s ease;
-      }
+.left-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
 
-      .left-panel li:hover {
-        color: #555;
-      }
+.left-panel tag.active + ul {
+  display: block;
+}
 
-      .left-panel .active + ul {
-        display: block;
-      }
+.left-panel li {
+  padding: 8px 16px;
+  color: rgba(51, 51, 51, 0.80);
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-      .app-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: space-around;
-        width: 100%;
-      }
+.left-panel li:hover {
+  color: #EC4D08;
+}
 
-      .app-card {
-        background-color: #ffffff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 30%;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px;
-        cursor: pointer;
-      }
-      .app-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-      }
-      .app-card h3 {
-        margin: 0;
-        height: 90px;
-        padding-top: 10px;
-        font-size: 25px;
-      }
+.left-panel li i {
+  font-size: 12px;
+}     
 
-      .app-card img {
-        width: 100%;
-        height: 150px;
-        border-radius: 8px;
-        object-fit: contain;
-        transition: transform 0.3s ease;
-      }
 
-      .app-card:hover img {
-        transform: scale(1.5);
-      }
-
-      .app-card p {
-        margin: 0;
-        padding-top: 5px;
-        text-align: center;
-      }
-      .tags-container {
-        margin-top: auto;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 6px;
-      }
-
-      .tag {
-        background-color: #f2f2f2;
-        color: #333;
-        padding: 5px 10px;
-        border-radius: 15px;
-        font-size: 12px;
-      }
-
-      .go-to-demo-btn {
-        display: inline-block;
-        background-color: #ff5000;
-        color: white;
-        padding: 6px 14px;
-        font-size: 12px;
-        font-weight: bold;
-        text-decoration: none;
-        border-radius: 20px;
-        margin: 10px auto;
-        transition: background-color 0.3s ease;
-        cursor: pointer;
-        width: 120px;
-      }
-
-      .go-to-demo-btn:hover {
-        background-color: #e04400;
-      }
-      .app-card .card-checkbox {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        transform: scale(2);
-        cursor: pointer;
-        z-index: 2;
-      }
-
-      .create-selected-button {
-        background-color: #6c757d;
-        color: white;
-        border: none;
-      }
-
-      .create-selected-button:hover {
-        background-color: #5a6268;
-      }
-
-      .app-card {
-        position: relative; /* Add this to position the checkbox */
-      }
-      @media (max-width: 1200px) {
-        .app-card {
-          width: 31%;
+#appsTable {
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-left: 20px;
+}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
         }
-      }
-
-      @media (max-width: 768px) {
-        .header {
-          flex-direction: column;
-          padding: 15px;
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
         }
-        .logo {
-          margin-bottom: 10px;
-          width: 100%;
-          max-width: 200px;
+        tr:nth-child(even) {
+            background-color: #DDDDDD; /* Light background for even rows */
         }
-        .search-input {
-          width: 100%;
-          margin-bottom: 10px;
+        tr:hover {
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+        .tag {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.tag:nth-child(1) { background-color: #4CAF50; } /* Green */
+        .tag:nth-child(2) { background-color: #2196F3; } /* Blue */
+        .tag:nth-child(3) { background-color: #FFBB04; } /* Orange */
+        .tag:nth-child(4) { background-color: #F44336; }
+        .checkbox-cell {
+            width: 40px;
+        }
+        
+        .create-cards-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .create-cards-btn:hover {
+            background-color: #45a049;
+        }
+        .link {
+            color: #2196F3; /* Highlighted link color */
+            text-decoration: underline;
         }
         .content {
-          flex-direction: column;
-          padding: 15px;
-        }
-        .left-panel {
-          width: 100%;
-          margin-bottom: 15px;
-        }
-        .app-card {
-          width: calc(50% - 10px);
-        }
-      }
-
-      @media (max-width: 480px) {
-        .app-card {
-          width: calc(100% - 20px);
-        }
-      }
-
-      #loading {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      #error {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 1000;
+        display: flex;
       }
     </style>
-  </head>
-  <body>
-    <div class="header">
+</head>
+<body>
+  <div class="header">
+    <div class="logo-title-container">
       <img
-        src="./Images/Stv_Primary_Colour_RGB.jpg"
+        src="https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/Stv_Primary_Colour_RGB.jpg"
         alt="Logo"
         class="logo"
-        width="170"
-        height="50"
+        width="122"
+        height="32"
         id="headerLogo"
       />
-      <div class="search-container">
-        <i class="bi bi-search search-icon"></i>
-        <input
-          type="text"
-          id="searchInput"
-          class="search-input"
-          placeholder="Search for apps ..."
-        />
-      </div>
-      <!-- Replace the view-buttons div with this -->
-      <div class="view-buttons">
-        <button class="view-button" onclick="listView()">
-          <i class="bi bi-list-ul"></i> List View
-        </button>
-        <button class="view-button active" onclick="tileView()">
-          <i class="bi bi-grid-3x3-gap"></i> Tile View
-        </button>
-        <button class="view-button download-csv-button" onclick="downloadCSV()">
-          <i class="bi bi-download"></i> Download CSV
-        </button>
-        <input
-          type="file"
-          id="uploadCSV"
-          class="view-button"
-          accept=".csv"
-          onchange="uploadCSV(event)"
-          style="display: none"
-        />
-        <button
-          class="view-button upload-csv-button"
-          onclick="document.getElementById('uploadCSV').click()"
-        >
-          <i class="bi bi-upload"></i> Upload CSV
-        </button>
-        <button class="view-button create-selected-button" onclick="showSelectedCards()">
-          <i class="bi bi-box-arrow-up-right"></i> Create Selected Cards
-        </button>
-      </div>
+      <div class="divider"></div>
+              
+      <div class="header-title">Solution Collection</div>
     </div>
-    <div class="content">
-      <div class="left-panel" id="leftPanel"></div>
-      <div class="app-grid" id="appGrid"></div>
+    <div class="search-container">
+      <i class="bi bi-search search-icon"></i>
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="Search for apps ..."
+      />
+      <button id="createCardsBtn" class="create-cards-btn">Create Selected Cards Page</button>
     </div>
+  </div>
 
-    <div id="loading" class="spinner-border text-primary d-none" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-
-    <div id="error" class="alert alert-danger d-none" role="alert"></div>
-
+    <div class="content"style="display: flex; flex-grow: 1;">
+        <div class="left-panel" id="leftPanel"></div>
+        <div style="flex-grow: 1;">
+        <table id="appsTable">
+                <thead>
+                    <tr style="background-color: #DDDDDD;">
+                        <th class="checkbox-cell"></th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Client</th>
+                        <th>Tags</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+</div>
     <script>
-                // Global variables
-                let apps = [];
-                let categories = [];
+        // Keep your existing code for init(), parseAppsCSV(), and parseTagsCSV()
+         // Global variables
+      let apps = [];
+      let categories = [];
+      let selectedRows = new Set();
+      // Initialize app
+      async function init() {
+        // showLoading();
+        try {
+          // Fetch both CSV files
+          const [appsResponse, tagsResponse] = await Promise.all([
+            fetch(
+              'https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/App%20tools%20-%20Demos1.csv',
+            ),
+            fetch(
+              'https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/demos%20sheet%20of%20frontend%20-%20Tags.csv',
+            ),
+          ]);
 
-                // Initialize app
-                async function init() {
-                    showLoading();
-                    try {
-                        // Fetch both CSV files
-                        const appsResponse = await fetch('https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/App%20tools%20-%20Demos1.csv');
-                        const tagsResponse= await fetch('https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/demos%20sheet%20of%20frontend%20-%20Tags.csv')
-                        // fetch('https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/App%20tools%20-%20Demos1.csv'),
-                        // fetch('https://raw.githubusercontent.com/Harshith-Vajinepalli/screenshots_of_pages/main/demos%20sheet%20of%20frontend%20-%20Tags.csv')
-                        // const appsResponse = await fetch('data/feb18 demos.csv');
-                        // const tagsResponse = await fetch('data/tags_data.csv');
-                        if (!appsResponse.ok) {
-            throw new Error(`Failed to fetch apps: ${appsResponse.status} ${appsResponse.statusText}`);
+          const [appsText, tagsText] = await Promise.all([
+            appsResponse.text(),
+            tagsResponse.text(),
+          ]);
+
+          // Parse CSVs
+          apps = parseAppsCSV(appsText);
+          categories = parseTagsCSV(tagsText);
+
+          // Display content
+          displayApps(apps);
+          setupCategories();
+
+        //   hideLoading();
+        } catch (error) {
+          showError('Failed to load data: ' + error.message);
         }
-        if (!tagsResponse.ok) {
-            throw new Error(`Failed to fetch tags: ${tagsResponse.status} ${tagsResponse.statusText}`);
-        }
-                        console.log("Yes");
-                        const [appsText, tagsText] = await Promise.all([
-                            appsResponse.text(),
-                            tagsResponse.text()
-                        ]);
+      }
+function parseAppsCSV(csv) {
+        const lines = csv.split(/\r?\n/);
+        return lines
+          .slice(1) // Skip header row
+          .filter((line) => line.trim() !== '') // Filter out empty lines
+          .map((line) => {
+            const columns = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+            // Only create object if we have at least the required fields
+            if (columns.length >= 9) {
+              return {
+                serialNo: columns[0]?.trim(),
+                name: columns[1]?.replace(/"/g, '').trim(),
+                client: columns[2]?.replace(/"/g, '').trim(),
+                description: columns[3]?.replace(/"/g, '').trim(),
+                comments: columns[4]?.replace(/"/g, '').trim(),
+                tags: columns[5]?.replace(/"/g, '').trim().split(',').map(tag => tag.trim()),
+                link: columns[6]?.replace(/"/g, '').trim(),
+                additionalPrompt: columns[7]?.replace(/"/g, '').trim(),
+                image: columns[8]?.replace(/"/g, '').trim(),
+              };
+            }
+            return null;
+          })
+          .filter((item) => item !== null); // Filter out any null entries
+      }
+      function parseTagsCSV(csv) {
+        const result = [];
+        const lines = csv.match(/(?:[^\n"]|"[^"]*")+/g); // Match lines, including quoted strings
 
-                        // Log the contents of the CSV files for debugging
-                        console.log("Apps CSV Content:", appsText);
-                        console.log("Tags CSV Content:", tagsText);
+        let currentCategory = null;
 
-                        // Parse CSVs
-                        apps = parseAppsCSV(appsText);
-                        categories = parseTagsCSV(tagsText);
+        lines.forEach((line) => {
+          const [category, ...subCategories] = line
+            .split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+            .map((s) => s.trim()); // Split by comma not inside quotes
+          const subCategoryList = subCategories
+            .join(',')
+            .replace(/(^"|"$)/g, '')
+            .split(',')
+            .map((s) => s.trim()); // Join and clean subcategories
 
-                        // Display content
-                        displayApps(apps);
-                        setupCategories();
-
-                        hideLoading();
-                    } catch (error) {
-                        showError("Failed to load data: " + error.message);
-                    }
-                }
-                function escapeCsvValue(value) {
-                    if (typeof value === 'string') {
-                        return `"${value.replace(/"/g, '""')}"`;
-                    }
-                    return value;
-                }
-
-                function downloadCSV() {
-                    const csvRows = [];
-                    const headers = ['Serial No', 'Name', 'Client', 'Description', 'Comments', 'Tags', 'Link', 'Additional Prompt', 'Image'];
-                    csvRows.push(headers.map(header => `"${header}"`).join(','));
-
-                    apps.forEach(app => {
-                        const values = [
-                            app.serialNo,
-                            app.name,
-                            app.client,
-                            app.description,
-                            app.comments,
-                            app.tags,
-                            app.link,
-                            app.additionalPrompt,
-                            app.image
-                        ].map(value => `"${value}"`); // Enclose each value in quotes
-                        csvRows.push(values.join(','));
-                    });
-
-                    const csvString = csvRows.join('\n');
-                    const blob = new Blob([csvString], { type: 'text/csv' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.setAttribute('href', url);
-                    a.setAttribute('download', 'apps.csv');
-                    a.click();
-                    URL.revokeObjectURL(url);
-                }
-                function uploadCSV(event) {
-                    const file = event.target.files[0];
-                    if (!file) return;
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const text = e.target.result;
-                        const uploadedApps = parseAppsCSV(text);
-                        apps = uploadedApps; // Update the global apps variable
-                        displayApps(apps); // Refresh the app cards
-                    };
-                    reader.readAsText(file);
-                    }
-                function parseAppsCSV(csv) {
-                    const lines = csv.split(/\r?\n/);
-                    return lines
-                        .slice(1) // Skip header row
-                        .filter(line => line.trim() !== '') // Filter out empty lines
-                        .map(line => {
-                        const columns = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                        // Only create object if we have at least the required fields
-                        if (columns.length >= 9) {
-                            return {
-                                serialNo: columns[0]?.trim(),
-                                name: columns[1]?.replace(/"/g, '').trim(),
-                                client: columns[2]?.replace(/"/g, '').trim(),
-                                description: columns[3]?.replace(/"/g, '').trim(),
-                                comments: columns[4]?.replace(/"/g, '').trim(),
-                                tags: columns[5]?.replace(/"/g, '').trim(),
-                                link: columns[6]?.replace(/"/g, '').trim(),
-                                additionalPrompt: columns[7]?.replace(/"/g, '').trim(),
-                                image: columns[8]?.replace(/"/g, '').trim()
-                            };
-                        }
-                        return null;
-                    })
-                    .filter(item => item !== null); // Filter out any null entries
-                }
-                function parseTagsCSV(csv) {
-                const result = [];
-                const lines = csv.match(/(?:[^\n"]|"[^"]*")+/g); // Match lines, including quoted strings
-
-                let currentCategory = null;
-
-                lines.forEach(line => {
-                    const [category, ...subCategories] = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(s => s.trim()); // Split by comma not inside quotes
-                    const subCategoryList = subCategories.join(',').replace(/(^"|"$)/g, '').split(',').map(s => s.trim()); // Join and clean subcategories
-
-                    if (category) {
-                        if (currentCategory) {
-                            result.push(currentCategory);
-                        }
-                        currentCategory = {
-                            name: category,
-                            subCategories: subCategoryList
-                        };
-                    }
-                });
-
-                if (currentCategory) {
-                    result.push(currentCategory);
-                }
-                return result;
-                }
-                function displayApps(appsToShow) {
-                    const grid = document.getElementById('appGrid');
-                    grid.innerHTML = '';
-
-                    appsToShow.forEach(app => {
-                        const card = document.createElement('div');
-                        card.className = 'app-card';
-
-                        // Add checkbox
-                        const checkbox = document.createElement('input');
-                        checkbox.type = 'checkbox';
-                        checkbox.className = 'card-checkbox';
-                        checkbox.style.position = 'absolute';
-                        checkbox.style.top = '10px';
-                        checkbox.style.left = '10px';
-                        checkbox.dataset.appId = app.serialNo; // Store app ID in dataset
-
-                        card.style.position = 'relative'; // For checkbox positioning
-
-                        // Add click handler to the entire card
-                        card.addEventListener('click', (e) => {
-                            if (e.target !== checkbox && // Don't trigger card click when clicking checkbox
-                                !e.target.closest('.tags-container') &&
-                                !e.target.closest('.go-to-demo-btn')) {
-                                window.open(app.link, '_blank');
-                            }
-                        });
-
-                        card.innerHTML = `
-                            <h3> ${app.name}</h3>
-                            <img src="${app.image}" alt="${app.name}" onerror="this.src='https://placehold.co/400x300?text=No+Image'">
-                            <p><i class="bi bi-info-circle"></i> ${app.description}</p>
-                            <div class="tags-container">
-                                ${app.tags?.split(',').map(tag => `<span class="tag"><i class="bi bi-tag"></i> ${tag.trim()}</span>`).join('') || ''}
-                            </div>
-                            <a href="${app.link}" class="go-to-demo-btn" target="_blank">
-                                <i class="bi bi-box-arrow-up-right"></i> Launch App
-                            </a>
-                        `;
-
-                        card.insertBefore(checkbox, card.firstChild);
-
-                        // Prevent tag clicks from triggering card click
-                        const tagsContainer = card.querySelector('.tags-container');
-                        tagsContainer.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                        });
-
-                        // Prevent launch button clicks from triggering card click
-                        const launchBtn = card.querySelector('.go-to-demo-btn');
-                        launchBtn.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                        });
-
-                        grid.appendChild(card);
-                    });
-                    }
-      function showSelectedCards() {
-          const selectedCheckboxes = document.querySelectorAll('.card-checkbox:checked');
-
-          if (selectedCheckboxes.length === 0) {
-              alert('Please select at least one card');
-              return;
+          if (category) {
+            if (currentCategory) {
+              result.push(currentCategory);
+            }
+            currentCategory = {
+              name: category,
+              subCategories: subCategoryList,
+            };
           }
+        });
 
-          const selectedApps = Array.from(selectedCheckboxes).map(checkbox =>
-              apps.find(app => app.serialNo === checkbox.dataset.appId)
-          ).filter(app => app);
+        if (currentCategory) {
+          result.push(currentCategory);
+        }
+        return result;
+      }
+      
+        // Modified displayApps function
+        function displayApps(appsToShow) {
+    const tbody = document.querySelector('#appsTable tbody');
+    tbody.innerHTML = '';
 
-          const newWindowContent = `
-              <!DOCTYPE html>
-              <html>
-              <head>
-                  <title>Selected Cards</title>
-                  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-                  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-                  <style>
-                  ${document.querySelector('style').innerHTML}
-                  </style>
-              </head>
-              <body>
-                  <div class="header">
-                      <img
-                          src="https://www.straive.com/wp-content/uploads/2024/04/straive-logo.png"
-                          alt="Logo"
-                          class="logo"
-                          width="170"
-                          height="50"
-                          id="headerLogo"
-                          onclick="resetFilters()"
-                      />
-                      <div class="search-container">
-                          <i class="bi bi-search search-icon"></i>
-                          <input
-                              type="text"
-                              id="searchInput"
-                              class="search-input"
-                              placeholder="Search for apps ..."
-                          />
-                      </div>
-                      <div class="view-buttons">
-                          <button class="view-button" onclick="listView()">
-                              <i class="bi bi-list-ul"></i> List View
-                          </button>
-                          <button class="view-button active" onclick="tileView()">
-                              <i class="bi bi-grid-3x3-gap"></i> Tile View
-                          </button>
-                      </div>
-                  </div>
+    appsToShow.forEach((app) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="checkbox-cell">
+                <input type="checkbox" class="row-checkbox" data-name="${app.name}">
+            </td>
+            <td>${app.name}</td>
+            <td>${app.description}</td>
+            <td>${app.client}</td>
+            <td>${app.tags.map(tag => 
+                `<span class="tag">${tag}</span>`
+            ).join('')}</td>
+            <td><a href="${app.link}" target="_blank" class="link">View</a></td>
+        `;
 
-                  <div class="content">
-                      <div class="left-panel" id="leftPanel">
-                          ${document.getElementById('leftPanel').innerHTML}
-                      </div>
-                      <div class="app-grid" id="appGrid">
-                          ${selectedApps.map(app => `
-                              <div class="app-card" onclick="window.open('${app.link}', '_blank')">
-                                  <h3><i class="bi bi-app"></i> ${app.name}</h3>
-                                  <img src="${app.image}" alt="${app.name}" onerror="this.src='https://placehold.co/400x300?text=No+Image'">
-                                  <p><i class="bi bi-info-circle"></i> ${app.description}</p>
-                                  <div class="tags-container">
-                                      ${app.tags?.split(',').map(tag => `<span class="tag"><i class="bi bi-tag"></i> ${tag.trim()}</span>`).join('') || ''}
-                                  </div>
-                                  <a href="${app.link}" class="go-to-demo-btn" target="_blank">
-                                      <i class="bi bi-box-arrow-up-right"></i> Launch App
-                                  </a>
-                              </div>
-                          `).join('')}
-                      </div>
-                  </div>
+        // Check if this row was previously selected
+        const checkbox = row.querySelector('.row-checkbox');
+        if (selectedRows.has(app.name)) {
+            checkbox.checked = true;
+        }
 
-                  <script>
-                      // Store the apps data
-                      const apps = ${JSON.stringify(selectedApps)};
+        // Add click handler for the entire row
+        row.addEventListener('click', (e) => {
+            if (!e.target.matches('a')) {
+                const checkbox = row.querySelector('.row-checkbox');
+                checkbox.checked = !checkbox.checked;
+                
+                // Update selectedRows Set
+                if (checkbox.checked) {
+                    selectedRows.add(app.name);
+                } else {
+                    selectedRows.delete(app.name);
+                }
+            }
+        });
 
-                      function displayApps(appsToShow) {
-                          const grid = document.getElementById('appGrid');
-                          grid.innerHTML = '';
-                          appsToShow.forEach(app => {
-                              const card = document.createElement('div');
-                              card.className = 'app-card';
-                              card.onclick = () => window.open(app.link, '_blank');
-                              card.innerHTML = \`
-                                  <h3><i class="bi bi-app"></i> \${app.name}</h3>
-                                  <img src="\${app.image}" alt="\${app.name}" onerror="this.src='https://placehold.co/400x300?text=No+Image'">
-                                  <p><i class="bi bi-info-circle"></i> \${app.description}</p>
-                                  <div class="tags-container">
-                                      \${app.tags?.split(',').map(tag => \`<span class="tag"><i class="bi bi-tag"></i> \${tag.trim()}</span>\`).join('') || ''}
-                                  </div>
-                                  <a href="\${app.link}" class="go-to-demo-btn" target="_blank">
-                                      <i class="bi bi-box-arrow-up-right"></i> Launch App
-                                  </a>
-                              \`;
-                              grid.appendChild(card);
-                          });
-                      }
+        // Prevent checkbox click from triggering row click
+        row.querySelector('.row-checkbox').addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (e.target.checked) {
+                selectedRows.add(app.name);
+            } else {
+                selectedRows.delete(app.name);
+            }
+        });
 
-                      function filterByTag(tag) {
-                          const filtered = apps.filter(app =>
-                              app.tags?.toLowerCase().includes(tag.toLowerCase())
-                          );
-                          displayApps(filtered);
-                      }
+        tbody.appendChild(row);
+    });
+}
+        // Add handler for Create Selected Cards button
+        document.getElementById('createCardsBtn').addEventListener('click', () => {
+            const selectedRows = [];
+            document.querySelectorAll('.row-checkbox:checked').forEach(checkbox => {
+                const row = checkbox.closest('tr');
+                const rowData = {
+                    name: row.cells[1].textContent,
+                    description: row.cells[2].textContent,
+                    client: row.cells[3].textContent,
+                    tags: row.cells[4].textContent,
+                    link: row.cells[5].querySelector('a').href
+                };
+                selectedRows.push(rowData);
+            });
 
-                      function resetFilters() {
-                          document.getElementById('searchInput').value = '';
-                          displayApps(apps);
-                          document.querySelectorAll('.left-panel h3').forEach(title => {
-                              title.classList.remove('active');
-                              const list = title.nextElementSibling;
-                              if (list) {
-                                  list.style.display = 'none';
-                              }
-                          });
-                      }
+            // Store selected data in localStorage or pass it to the next page
+            localStorage.setItem('selectedCards', JSON.stringify(selectedRows));
+            // Navigate to the second page
+            window.location.href = 'd.html';
+        });
+        function setupCategories() {
+        const panel = document.getElementById('leftPanel');
+        panel.innerHTML = '';
 
-                      function listView() {
-                          document.querySelectorAll('.app-card').forEach(card => {
-                              card.style.width = '100%';
-                          });
-                          document.querySelectorAll('.view-button').forEach(btn => {
-                              btn.classList.remove('active');
-                          });
-                          document.querySelector('.view-button').classList.add('active');
-                      }
+        categories.forEach((category) => {
+          const title = document.createElement('tag');
+          title.innerHTML = `${category.name}`;
 
-                      function tileView() {
-                          document.querySelectorAll('.app-card').forEach(card => {
-                              card.style.width = '30%';
-                          });
-                          document.querySelectorAll('.view-button').forEach(btn => {
-                              btn.classList.remove('active');
-                          });
-                          document.querySelectorAll('.view-button')[1].classList.add('active');
-                      }
+          const list = document.createElement('ul');
+          list.style.display = 'none';
+          category.subCategories.forEach((subCategory) => {
+            const item = document.createElement('li');
+            item.innerHTML = ` ${subCategory}`;
+            item.addEventListener('click', () => filterByTag(subCategory));
+            list.appendChild(item);
+          });
 
-                      // Set up search functionality
-                      document.getElementById('searchInput').addEventListener('input', (e) => {
-                          const searchTerm = e.target.value.toLowerCase();
-                          const filtered = apps.filter(app =>
-                              app.name.toLowerCase().includes(searchTerm) ||
-                              app.description.toLowerCase().includes(searchTerm) ||
-                              app.tags?.toLowerCase().includes(searchTerm)
-                          );
-                          displayApps(filtered);
-                      });
+          title.addEventListener('click', () => {
+            title.classList.toggle('active');
+            list.style.display = list.style.display === 'none' ? 'block' : 'none';
+          });
 
-                      // Set up category filtering
-                      document.querySelectorAll('.left-panel h3').forEach(title => {
-                          title.addEventListener('click', () => {
-                              title.classList.toggle('active');
-                              const list = title.nextElementSibling;
-                              if (list) {
-                                  list.style.display = list.style.display === 'none' ? 'block' : 'none';
-                              }
-                          });
-                      });
-
-                      document.querySelectorAll('.left-panel li').forEach(item => {
-                          item.addEventListener('click', () => {
-                              const tag = item.textContent.trim();
-                              filterByTag(tag);
-                          });
-                      });
-                  <\/script>
-              </body>
-              </html>
-          `;
-
-          const newWindow = window.open('', '_blank');
-          newWindow.document.write(newWindowContent);
-          newWindow.document.close();
+          panel.appendChild(title);
+          panel.appendChild(list);
+        });
       }
 
-                function setupCategories() {
-                    const panel = document.getElementById('leftPanel');
-                    panel.innerHTML = '';
+      function filterByTag(tag) {
+        const filtered = apps.filter((app) => app.tags?.toLowerCase().includes(tag.toLowerCase()));
+        displayApps(filtered);
+      }
+    //   function showLoading() {
+    //     document.getElementById('loading').classList.remove('d-none');
+    //   }
 
-                    categories.forEach(category => {
-                        const title = document.createElement('h3');
-                        title.innerHTML = `<i class="bi bi-folder"></i> ${category.name}`;
+    //   function hideLoading() {
+    //     document.getElementById('loading').classList.add('d-none');
+    //   }
 
-                        const list = document.createElement('ul');
-                        list.style.display = 'none';
-                        category.subCategories.forEach(subCategory => {
-                            const item = document.createElement('li');
-                            item.innerHTML = `<i class="bi bi-tag"></i> ${subCategory}`;
-                            item.addEventListener('click', () => filterByTag(subCategory));
-                            list.appendChild(item);
-                        });
+      function showError(message) {
+        const error = document.getElementById('error');
+        error.textContent = message;
+        error.classList.remove('d-none');
+        hideLoading();
+        setTimeout(() => error.classList.add('d-none'), 5000);
+      }
+      document.getElementById('searchInput').addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const filtered = apps.filter(
+        (app) =>
+            app.name.toLowerCase().includes(searchTerm) ||
+            app.description.toLowerCase().includes(searchTerm) ||
+            app.tags?.toLowerCase().includes(searchTerm),
+    );
+    displayApps(filtered);
+});
 
-                        title.addEventListener('click', () => {
-                            title.classList.toggle('active');
-                            list.style.display = list.style.display === 'none' ? 'block' : 'none';
-                        });
+// Modify the displayApps function to ensure selected rows remain selected
+function displayApps(appsToShow) {
+    const tbody = document.querySelector('#appsTable tbody');
+    tbody.innerHTML = '';
 
-                        panel.appendChild(title);
-                        panel.appendChild(list);
-                    });
+    appsToShow.forEach((app) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="checkbox-cell">
+                <input type="checkbox" class="row-checkbox" data-name="${app.name}">
+            </td>
+            <td>${app.name}</td>
+            <td>${app.description}</td>
+            <td>${app.client}</td>
+            <td>${app.tags.map(tag => 
+                `<span class="tag">${tag}</span>`
+            ).join('')}</td>
+            <td><a href="${app.link}" target="_blank" class="link">View</a></td>
+        `;
+
+        // Check if this row was previously selected
+        const checkbox = row.querySelector('.row-checkbox');
+        if (selectedRows.has(app.name)) {
+            checkbox.checked = true;
+        }
+
+        // Add click handler for the entire row
+        row.addEventListener('click', (e) => {
+            if (!e.target.matches('a')) {
+                const checkbox = row.querySelector('.row-checkbox');
+                checkbox.checked = !checkbox.checked;
+                
+                // Update selectedRows Set
+                if (checkbox.checked) {
+                    selectedRows.add(app.name);
+                } else {
+                    selectedRows.delete(app.name);
                 }
+            }
+        });
 
-                function filterByTag(tag) {
-                    const filtered = apps.filter(app =>
-                        app.tags?.toLowerCase().includes(tag.toLowerCase())
-                    );
-                    displayApps(filtered);
-                }
+        // Prevent checkbox click from triggering row click
+        row.querySelector('.row-checkbox').addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (e.target.checked) {
+                selectedRows.add(app.name);
+            } else {
+                selectedRows.delete(app.name);
+            }
+        });
 
-                function listView() {
-                    document.querySelectorAll('.app-card').forEach(card => {
-                        card.style.width = '100%';
-                    });
-                    document.querySelectorAll('.view-button').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    document.querySelector('button').classList.add('active');
-                }
+        tbody.appendChild(row);
+    });
+}
+      /*document.getElementById('searchInput').addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const filtered = apps.filter(
+          (app) =>
+            app.name.toLowerCase().includes(searchTerm) ||
+            app.description.toLowerCase().includes(searchTerm) ||
+            app.tags?.toLowerCase().includes(searchTerm),
+        );
+        displayApps(filtered);
+      });
+      // Add this function to reset filters
+      function resetFilters() {
+        // Reset search input
+        document.getElementById('searchInput').value = '';
 
-                function tileView() {
-                    document.querySelectorAll('.app-card').forEach(card => {
-                        card.style.width = '32%';
-                    });
-                    document.querySelectorAll('.view-button').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    document.querySelectorAll('.view-button')[1].classList.add('active');
-                }
+        // Display all apps
+        displayApps(apps);
 
-                // Utility functions
-                function showLoading() {
-                    document.getElementById('loading').classList.remove('d-none');
-                }
+        // Reset category selections in left panel
+        document.querySelectorAll('.left-panel h3').forEach((title) => {
+          title.classList.remove('active');
+          const list = title.nextElementSibling;
+          if (list) {
+            list.style.display = 'none';
+          }
+        });
+      }*/
 
-                function hideLoading() {
-                    document.getElementById('loading').classList.add('d-none');
-                }
-
-                function showError(message) {
-                    const error = document.getElementById('error');
-                    error.textContent = message;
-                    error.classList.remove('d-none');
-                    hideLoading();
-                    setTimeout(() => error.classList.add('d-none'), 5000);
-                }
-
-                // Search functionality
-                document.getElementById('searchInput').addEventListener('input', (e) => {
-                    const searchTerm = e.target.value.toLowerCase();
-                    const filtered = apps.filter(app =>
-                        app.name.toLowerCase().includes(searchTerm) ||
-                        app.description.toLowerCase().includes(searchTerm) ||
-                        app.tags?.toLowerCase().includes(searchTerm)
-                    );
-                    displayApps(filtered);
-                });
-                // Add this function to reset filters
-                function resetFilters() {
-                    // Reset search input
-                    document.getElementById('searchInput').value = '';
-
-                    // Display all apps
-                    displayApps(apps);
-
-                    // Reset category selections in left panel
-                    document.querySelectorAll('.left-panel h3').forEach(title => {
-                        title.classList.remove('active');
-                        const list = title.nextElementSibling;
-                        if (list) {
-                            list.style.display = 'none';
-                        }
-                    });
-                }
-
-            // Add this in your init() function or at the end of your script
-            document.getElementById('headerLogo').addEventListener('click', resetFilters);
-                                                              // Initialize the app
-                                                              window.addEventListener('load', init);
+      // Add this in your init() function or at the end of your script
+      // document.getElementById('headerLogo').addEventListener('click', resetFilters);
+      // Initialize the app
+      window.addEventListener('load', init);
+    
+        // Initialize the app
+        init();
     </script>
-  </body>
+</body>
 </html>
