@@ -140,7 +140,7 @@
 
 
 #appsTable {
-    width: 100%;
+    width: 98%;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -232,7 +232,8 @@
         <table id="appsTable">
                 <thead>
                     <tr style="background-color: #DDDDDD;">
-                        <th class="checkbox-cell"></th>
+                        <th class="checkbox-cell"><input type="checkbox" id="selectAllCheckbox">
+                        </th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Client</th>
@@ -244,6 +245,12 @@
             </table>
         </div>
 </div>
+<div id="loading" class="spinner-border text-primary d-none" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<div id="error" class="alert alert-danger d-none" role="alert"></div>
+
     <script>
         // Keep your existing code for init(), parseAppsCSV(), and parseTagsCSV()
          // Global variables
@@ -252,7 +259,7 @@
       let selectedRows = new Set();
       // Initialize app
       async function init() {
-        // showLoading();
+        showLoading();
         try {
           // Fetch both CSV files
           const [appsResponse, tagsResponse] = await Promise.all([
@@ -277,7 +284,7 @@
           displayApps(apps);
           setupCategories();
 
-        //   hideLoading();
+          hideLoading();
         } catch (error) {
           showError('Failed to load data: ' + error.message);
         }
@@ -403,7 +410,7 @@ function parseAppsCSV(csv) {
                     name: row.cells[1].textContent,
                     description: row.cells[2].textContent,
                     client: row.cells[3].textContent,
-                    tags: row.cells[4].textContent,
+                    tags: Array.from(row.cells[4].querySelectorAll('.tag')).map(tag => tag.textContent),
                     link: row.cells[5].querySelector('a').href
                 };
                 selectedRows.push(rowData);
@@ -442,16 +449,19 @@ function parseAppsCSV(csv) {
       }
 
       function filterByTag(tag) {
-        const filtered = apps.filter((app) => app.tags?.toLowerCase().includes(tag.toLowerCase()));
+        // const filtered = apps.filter((app) => app.tags?.toLowerCase().includes(tag.toLowerCase()));
+        const filtered = apps.filter((app) => 
+          app.tags.some(tagItem => tagItem.toLowerCase().includes(tag.toLowerCase()))
+        );
         displayApps(filtered);
       }
-    //   function showLoading() {
-    //     document.getElementById('loading').classList.remove('d-none');
-    //   }
+      function showLoading() {
+        document.getElementById('loading').classList.remove('d-none');
+      }
 
-    //   function hideLoading() {
-    //     document.getElementById('loading').classList.add('d-none');
-    //   }
+      function hideLoading() {
+        document.getElementById('loading').classList.add('d-none');
+      }
 
       function showError(message) {
         const error = document.getElementById('error');
@@ -461,15 +471,18 @@ function parseAppsCSV(csv) {
         setTimeout(() => error.classList.add('d-none'), 5000);
       }
       document.getElementById('searchInput').addEventListener('input', (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-    const filtered = apps.filter(
-        (app) =>
+        const searchTerm = e.target.value.toLowerCase();
+        // console.log(apps);
+        const filtered = apps.filter(
+          (app) =>
             app.name.toLowerCase().includes(searchTerm) ||
             app.description.toLowerCase().includes(searchTerm) ||
-            app.tags?.toLowerCase().includes(searchTerm),
-    );
-    displayApps(filtered);
-});
+            // app.tags?.toLowerCase().includes(searchTerm),
+            app.tags.some(tag => tag.toLowerCase().includes(searchTerm)), // Corrected for array
+    
+        );
+        displayApps(filtered);
+      });
 
 // Modify the displayApps function to ensure selected rows remain selected
 function displayApps(appsToShow) {
@@ -525,6 +538,18 @@ function displayApps(appsToShow) {
         tbody.appendChild(row);
     });
 }
+document.getElementById('selectAllCheckbox').addEventListener('change', function() {
+    const checkboxes = document.querySelectorAll('.row-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = this.checked;
+        const appName = checkbox.getAttribute('data-name');
+        if (this.checked) {
+            selectedRows.add(appName);
+        } else {
+            selectedRows.delete(appName);
+        }
+    });
+});
       /*document.getElementById('searchInput').addEventListener('input', (e) => {
         const searchTerm = e.target.value.toLowerCase();
         const filtered = apps.filter(
@@ -553,8 +578,25 @@ function displayApps(appsToShow) {
         });
       }*/
 
+      function resetFilters() {
+    // Reset search input
+    document.getElementById('searchInput').value = '';
+
+    // Display all apps
+    displayApps(apps);
+
+    // Reset category selections in the left panel
+    document.querySelectorAll('.left-panel tag').forEach((title) => {
+        title.classList.remove('active');
+        const list = title.nextElementSibling;
+        if (list) {
+            list.style.display = 'none';
+        }
+    });
+}
+
       // Add this in your init() function or at the end of your script
-      // document.getElementById('headerLogo').addEventListener('click', resetFilters);
+      document.getElementById('headerLogo').addEventListener('click', resetFilters);
       // Initialize the app
       window.addEventListener('load', init);
     
